@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#08111f" />
-  <title>Crypto Signal Lab · Trading Copilot</title>
+  <title>Crypto Signal Lab · Calm Trading Copilot</title>
   <script src="https://unpkg.com/lightweight-charts@5.2.1/dist/lightweight-charts.standalone.production.js"></script>
   <style>
     :root{
@@ -149,166 +149,112 @@
       .controls{gap:8px}.field{width:100%}.field select{flex:1}.spacer{display:none}.tfs{width:100%}.tf{flex:1}
     }
     @media(max-width:420px){h1{font-size:17px}.livebox{padding:8px}.logo{width:38px;height:38px}.levels{grid-template-columns:1fr}.mtf{grid-template-columns:repeat(2,1fr)}}
+  
+    /* === Calm UI v3: decision first, depth on demand === */
+    .app{max-width:1320px}
+    .topbar{margin-bottom:12px}
+    .quickControls{padding:12px 14px;margin-bottom:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .quickControls .modeToggle{margin-left:auto}
+    .decisionPanel{margin-bottom:12px;overflow:hidden;position:relative}
+    .decisionPanel:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 0 0,rgba(66,220,255,.08),transparent 42%),radial-gradient(circle at 100% 0,rgba(95,131,255,.06),transparent 35%)}
+    .decisionInner{position:relative;padding:18px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.9fr);gap:18px}
+    .decisionEyebrow{font-size:10px;text-transform:uppercase;letter-spacing:1.15px;color:var(--muted);font-weight:800}
+    .decisionAction{font-size:36px;line-height:1.05;font-weight:900;letter-spacing:-1px;margin:6px 0 8px}
+    .decisionSummary{font-size:14px;color:#d4e5f2;max-width:740px}
+    .decisionPills{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+    .tradeSnapshot{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start}
+    .tradeSnapshot .level{min-height:66px}.tradeSnapshot .level .v{font-size:15px}.tradeSnapshot .rr{grid-column:1/-1;margin-top:0}
+    .guidanceStrip{position:relative;border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(3,1fr)}
+    .guideItem{padding:12px 16px;min-width:0}.guideItem + .guideItem{border-left:1px solid var(--border)}
+    .guideItem .k{font-size:9px;letter-spacing:.7px;text-transform:uppercase;color:var(--muted)}
+    .guideItem .v{margin-top:4px;font-size:12px;font-weight:700;color:#dbeaf5;overflow-wrap:anywhere}
+    .mainStack{display:grid;gap:12px}.chartPanel{overflow:hidden}.chartPanel #priceChart{height:500px}
+    .whyGrid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:12px}.whyPanel{padding:16px}
+    .whyPanel .conclusion{font-size:13px}.miniLearn{padding:14px;border-radius:14px;background:rgba(66,220,255,.05);border:1px solid rgba(66,220,255,.12)}
+    .advancedDetails,.scannerDetails{border:1px solid var(--border);border-radius:var(--radius);background:linear-gradient(180deg,rgba(16,32,52,.72),rgba(9,21,35,.76));overflow:hidden}
+    .advancedDetails>summary,.scannerDetails>summary{list-style:none;cursor:pointer;padding:15px 16px;display:flex;align-items:center;justify-content:space-between;gap:14px;font-weight:850}
+    .advancedDetails>summary::-webkit-details-marker,.scannerDetails>summary::-webkit-details-marker{display:none}
+    .advancedDetails>summary:after,.scannerDetails>summary:after{content:"＋";color:var(--cyan);font-size:18px;font-weight:500}
+    .advancedDetails[open]>summary:after,.scannerDetails[open]>summary:after{content:"−"}.summarySub{display:block;color:var(--muted);font-size:10px;font-weight:500;margin-top:2px}
+    .advancedBody{padding:0 14px 14px;border-top:1px solid var(--border)}.advancedGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+    .advancedCard{border:1px solid var(--border);border-radius:15px;background:rgba(5,15,25,.42);overflow:hidden}.advancedCard .section{padding:14px}.advancedWide{grid-column:1/-1}
+    .indicatorGrid{padding:0;grid-template-columns:1fr 1fr}.indicator{border-radius:0;border-width:0 1px 0 0}.indicator:last-child{border-right:0}
+    .scannerDetails{margin-top:0}.scannerDetails .scannerPanel{margin:0;border:0;border-radius:0;background:transparent;box-shadow:none}.scannerDetails .scannerHead{padding:14px 15px}
+    .compactStats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.compactStats .stat{border:1px solid var(--border);border-radius:12px;background:rgba(5,15,25,.42);padding:10px 11px}
+    @media(max-width:920px){.decisionInner,.whyGrid{grid-template-columns:1fr}.guidanceStrip{grid-template-columns:1fr}.guideItem + .guideItem{border-left:0;border-top:1px solid var(--border)}.advancedGrid{grid-template-columns:1fr}.advancedWide{grid-column:auto}.compactStats{grid-template-columns:repeat(2,1fr)}.chartPanel #priceChart{height:440px}}
+    @media(max-width:640px){.quickControls{align-items:stretch}.quickControls .field{width:100%}.quickControls #marketSelect{width:100%}.quickControls .tfs{width:100%}.quickControls .tf{flex:1}.quickControls .modeToggle{margin-left:0;width:100%}.quickControls .modeBtn{flex:1}.decisionInner{padding:14px}.decisionAction{font-size:30px}.tradeSnapshot{grid-template-columns:1fr}.tradeSnapshot .rr{grid-column:auto}.chartPanel #priceChart{height:390px}.indicatorGrid{grid-template-columns:1fr}.indicator{border-right:0;border-bottom:1px solid var(--border)}.compactStats{grid-template-columns:1fr 1fr}}
+
   </style>
 </head>
 <body>
 <div class="app">
-  <div class="topbar">
+  <header class="topbar">
     <div class="brand">
-      <div class="logo" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4-4 3 2 5-7 4 3" stroke="#42dcff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 20h16" stroke="#5f83ff" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </div>
-      <div><h1>Crypto Signal Lab <span style="color:var(--cyan);font-size:12px;vertical-align:top">COPILOT</span></h1><div class="subtitle">Live marktdata · patroonherkenning · scenario's · multi-timeframe tradecoach</div></div>
+      <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4-4 3 2 5-7 4 3" stroke="#42dcff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 20h16" stroke="#5f83ff" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+      <div><h1>Crypto Signal Lab <span style="color:var(--cyan);font-size:12px;vertical-align:top">COPILOT</span></h1><div class="subtitle">Eerst de beslissing. Daarna pas de details.</div></div>
     </div>
     <div class="livebox"><span id="liveDot" class="dot"></span><span id="liveText">Verbinden…</span></div>
-  </div>
+  </header>
 
+  <section class="panel quickControls">
+    <div class="field"><label for="marketSelect">Markt</label><select id="marketSelect"><option>BTC-EUR</option><option>ETH-EUR</option><option>SOL-EUR</option><option>XRP-EUR</option><option>HBAR-EUR</option><option>ADA-EUR</option><option>LINK-EUR</option><option>DOGE-EUR</option></select></div>
+    <div class="tfs" id="timeframes"><button class="tf" data-tf="5m">5m</button><button class="tf" data-tf="15m">15m</button><button class="tf active" data-tf="1h">1u</button><button class="tf" data-tf="4h">4u</button><button class="tf" data-tf="1d">1D</button></div>
+    <button class="refresh" id="refreshBtn" type="button">↻ Vernieuw</button>
+    <div class="modeToggle"><button class="modeBtn active" id="beginnerMode" type="button">Eenvoudig</button><button class="modeBtn" id="proMode" type="button">Pro</button></div>
+  </section>
 
-  <section class="copilotHero panel">
-    <div class="copilotInner">
-      <div class="copilotLead">
-        <div class="eyebrow">Trading Copilot · wat zou een gedisciplineerde trader nu doen?</div>
-        <div class="copilotAction warn" id="copilotAction">ANALYSEREN…</div>
-        <div class="copilotSummary" id="copilotSummary">De app bouwt eerst het marktbeeld op en geeft pas daarna een voorstel. Een lage kwaliteit betekent bewust: niet traden.</div>
-        <div class="copilotMeta">
-          <span class="pill" id="copilotConfidence">Setup —</span><span class="pill" id="copilotPattern">Patroon —</span><span class="pill" id="copilotRegime">Regime —</span>
-        </div>
+  <section class="decisionPanel panel">
+    <div class="decisionInner">
+      <div>
+        <div class="decisionEyebrow">Wat is nu het verstandigste?</div>
+        <div class="decisionAction warn" id="copilotAction">ANALYSEREN…</div>
+        <div class="decisionSummary" id="copilotSummary">De app bouwt eerst het marktbeeld op. Alleen bij voldoende confluence verschijnt een concreet tradevoorstel.</div>
+        <div class="decisionPills"><span class="pill" id="copilotConfidence">Setup —</span><span class="pill" id="copilotPattern">Patroon —</span><span class="pill" id="copilotRegime">Regime —</span><span class="badge neutral" id="signalBadge">WACHTEN</span></div>
       </div>
       <div>
-        <div style="display:flex;justify-content:flex-end;margin-bottom:9px"><div class="modeToggle" aria-label="Ervaringsniveau"><button class="modeBtn active" id="beginnerMode" type="button">Beginner</button><button class="modeBtn" id="proMode" type="button">Pro</button></div></div>
-        <div class="copilotFacts">
-          <div class="fact"><div class="k">Trigger</div><div class="v" id="copilotTrigger">Wacht op analyse</div></div>
-          <div class="fact"><div class="k">Ongeldig als</div><div class="v" id="copilotInvalid">—</div></div>
-          <div class="fact"><div class="k">Belangrijkste risico</div><div class="v" id="copilotRisk">—</div></div>
+        <div class="tradeHero"><div><div class="small">Tradeplan</div><div class="big warn" id="planSide">WACHTEN</div></div><div style="text-align:right"><div class="small">Setup-score</div><div class="big" id="planScore">—</div></div></div>
+        <div class="tradeSnapshot">
+          <div class="level entry"><div class="k">Entryzone</div><div class="v" id="entryLevel">—</div></div>
+          <div class="level stop"><div class="k">Stop loss</div><div class="v" id="stopLevel">—</div></div>
+          <div class="level tp"><div class="k">Take profit 1</div><div class="v" id="tp1">—</div></div>
+          <div class="level tp"><div class="k">Take profit 2 / 3</div><div class="v" id="tp23">—</div></div>
+          <div class="rr"><span>Risk / reward naar TP2</span><b id="rrValue">—</b></div>
         </div>
+        <div style="display:flex;justify-content:flex-end;margin-top:8px"><span class="badge" id="qualityBadge">—</span></div>
       </div>
+    </div>
+    <div class="guidanceStrip">
+      <div class="guideItem"><div class="k">Wacht op / trigger</div><div class="v" id="copilotTrigger">Wacht op analyse</div></div>
+      <div class="guideItem"><div class="k">Ongeldig als</div><div class="v" id="copilotInvalid">—</div></div>
+      <div class="guideItem"><div class="k">Belangrijkste risico</div><div class="v" id="copilotRisk">—</div></div>
     </div>
   </section>
 
-  <div class="grid">
-    <main class="panel">
-      <div class="controls">
-        <div class="field"><label for="marketSelect">Markt</label>
-          <select id="marketSelect">
-            <option>BTC-EUR</option><option>ETH-EUR</option><option>SOL-EUR</option><option>XRP-EUR</option><option>HBAR-EUR</option><option>ADA-EUR</option><option>LINK-EUR</option><option>DOGE-EUR</option>
-          </select>
-        </div>
-        <div class="tfs" id="timeframes" aria-label="Timeframe">
-          <button class="tf" data-tf="5m">5m</button><button class="tf" data-tf="15m">15m</button><button class="tf active" data-tf="1h">1u</button><button class="tf" data-tf="4h">4u</button><button class="tf" data-tf="1d">1D</button>
-        </div>
-        <div class="spacer"></div>
-        <button class="refresh" id="refreshBtn" type="button">↻ Nieuwe analyse</button>
-      </div>
+  <main class="mainStack">
+    <section class="panel chartPanel"><div class="chartWrap"><div id="priceChart"><div class="chartLegend"><span class="ema20">EMA 20</span><span class="ema50">EMA 50</span><span class="ema200">EMA 200</span><span class="bb">Bollinger</span></div><div class="loadingOverlay" id="loading"><div class="loader"></div></div></div></div></section>
 
-      <div class="heroStats">
-        <div class="stat"><div class="k">Laatste prijs</div><div class="v" id="lastPrice">—</div></div>
-        <div class="stat"><div class="k">24u indicatie</div><div class="v" id="change24">—</div></div>
-        <div class="stat"><div class="k">RSI 14</div><div class="v" id="rsiStat">—</div></div>
-        <div class="stat"><div class="k">ATR volatiliteit</div><div class="v" id="atrStat">—</div></div>
-        <div class="stat"><div class="k">Regime</div><div class="v" id="regimeStat">—</div></div>
-      </div>
+    <section class="whyGrid">
+      <div class="panel whyPanel"><div class="sectionTitle"><h2>Waarom geeft de app dit advies?</h2><span class="badge" id="updatedAt">—</span></div><div class="conclusion" id="conclusion">Data wordt geladen…</div></div>
+      <div class="panel whyPanel beginnerOnly"><div class="sectionTitle"><h2>In gewone taal</h2><span class="badge">Leer mee</span></div><div class="miniLearn" id="learnBox"><b>Tip:</b> de app kijkt nooit naar één indicator, maar naar trend, momentum, structuur en meerdere timeframes samen.</div></div>
+    </section>
 
-      <div class="chartWrap">
-        <div id="priceChart">
-          <div class="chartLegend"><span class="ema20">EMA 20</span><span class="ema50">EMA 50</span><span class="ema200">EMA 200</span><span class="bb">Bollinger</span></div>
-          <div class="loadingOverlay" id="loading"><div class="loader"></div></div>
-        </div>
-      </div>
-      <div class="indicatorGrid proOnly">
-        <div class="indicator"><div class="indicatorHead"><span>RSI 14</span><span id="rsiLabel">—</span></div><div id="rsiChart"></div></div>
-        <div class="indicator"><div class="indicatorHead"><span>MACD 12/26/9</span><span id="macdLabel">—</span></div><div id="macdChart"></div></div>
-      </div>
-    </main>
+    <details class="advancedDetails">
+      <summary><span>Verdiepende analyse <span class="summarySub">Scores, timeframes, patronen, scenario's, indicatoren en risico</span></span></summary>
+      <div class="advancedBody"><div class="advancedGrid">
+        <section class="advancedCard"><div class="section"><div class="sectionTitle"><h2>Marktoverzicht</h2><span class="badge" id="mtfSummary">—</span></div><div class="compactStats"><div class="stat"><div class="k">Laatste prijs</div><div class="v" id="lastPrice">—</div></div><div class="stat"><div class="k">24u</div><div class="v" id="change24">—</div></div><div class="stat"><div class="k">RSI 14</div><div class="v" id="rsiStat">—</div></div><div class="stat"><div class="k">ATR</div><div class="v" id="atrStat">—</div></div><div class="stat"><div class="k">Regime</div><div class="v" id="regimeStat">—</div></div></div><div class="mtf" style="margin-top:12px"><div class="mtfCard"><div class="tfname">15 MIN</div><div class="dir" id="mtf15">—</div></div><div class="mtfCard"><div class="tfname">1 UUR</div><div class="dir" id="mtf1h">—</div></div><div class="mtfCard"><div class="tfname">4 UUR</div><div class="dir" id="mtf4h">—</div></div><div class="mtfCard"><div class="tfname">1 DAG</div><div class="dir" id="mtf1d">—</div></div></div></div></section>
+        <section class="advancedCard"><div class="section"><div class="sectionTitle"><h2>Analyse-score</h2><span class="badge" id="checkScore">—</span></div><div class="scoreRow"><span class="name">Trend</span><span class="bar"><i id="trendBar"></i></span><span class="num" id="trendScore">—</span></div><div class="scoreRow"><span class="name">Momentum</span><span class="bar"><i id="momBar"></i></span><span class="num" id="momScore">—</span></div><div class="scoreRow"><span class="name">Structuur</span><span class="bar"><i id="structBar"></i></span><span class="num" id="structScore">—</span></div><div class="scoreRow"><span class="name">Confluence</span><span class="bar"><i id="confBar"></i></span><span class="num" id="confScore">—</span></div><div class="checklist" id="checklist" style="margin-top:12px"></div></div></section>
+        <section class="advancedCard"><div class="section"><div class="sectionTitle"><h2>Patronen</h2><span class="badge" id="patternCount">0 gevonden</span></div><div class="patternGrid" id="patternGrid"><div class="patternCard"><div class="patternWhy">Patronen worden berekend zodra de koersdata geladen is.</div></div></div></div></section>
+        <section class="advancedCard"><div class="section"><div class="sectionTitle"><h2>Bull / Base / Bear</h2><span class="badge">scenario's</span></div><div class="scenarioGrid" id="scenarioGrid"></div></div></section>
+        <section class="advancedCard advancedWide proOnly"><div class="indicatorGrid"><div class="indicator"><div class="indicatorHead"><span>RSI 14</span><span id="rsiLabel">—</span></div><div id="rsiChart"></div></div><div class="indicator"><div class="indicatorHead"><span>MACD 12/26/9</span><span id="macdLabel">—</span></div><div id="macdChart"></div></div></div></section>
+        <section class="advancedCard"><div class="section"><div class="sectionTitle"><h2>Risico & positie</h2><span class="badge">optioneel</span></div><div class="riskForm"><div><label for="accountSize">Account (€)</label><input id="accountSize" inputmode="decimal" type="number" min="1" step="100" value="2500"></div><div><label for="riskPct">Risico per trade (%)</label><input id="riskPct" inputmode="decimal" type="number" min=".1" max="10" step=".1" value="1"></div></div><div class="riskOut"><span style="color:var(--muted)">Max. risico</span><br><b id="riskEuro">€ 25,00</b><div id="positionSize" style="color:var(--muted);margin-top:4px">Positieomvang verschijnt zodra een setup geldig is.</div></div><div class="paperActions"><button class="paperBtn primary" id="paperTradeBtn" type="button">＋ Paper trade</button><button class="paperBtn" id="clearJournalBtn" type="button">Wis journal</button></div></div></section>
+        <section class="advancedCard"><div class="section"><div class="sectionTitle"><h2>Paper journal</h2><span class="badge" id="journalStats">0 trades</span></div><div class="journalList" id="journalList"><div class="proNote">Nog geen gesimuleerde trades.</div></div></div></section>
+      </div></div>
+    </details>
 
-    <aside class="side">
-      <section class="panel">
-        <div class="section">
-          <div class="sectionTitle"><h2>Analyse-engine</h2><span class="badge neutral" id="signalBadge">WACHTEN</span></div>
-          <div class="scoreRow"><span class="name">Trend</span><span class="bar"><i id="trendBar"></i></span><span class="num" id="trendScore">—</span></div>
-          <div class="scoreRow"><span class="name">Momentum</span><span class="bar"><i id="momBar"></i></span><span class="num" id="momScore">—</span></div>
-          <div class="scoreRow"><span class="name">Structuur</span><span class="bar"><i id="structBar"></i></span><span class="num" id="structScore">—</span></div>
-          <div class="scoreRow"><span class="name">Confluence</span><span class="bar"><i id="confBar"></i></span><span class="num" id="confScore">—</span></div>
-        </div>
-        <div class="section">
-          <div class="sectionTitle"><h2>Multi-timeframe</h2><span class="badge" id="mtfSummary">—</span></div>
-          <div class="mtf">
-            <div class="mtfCard"><div class="tfname">15 MIN</div><div class="dir" id="mtf15">—</div></div>
-            <div class="mtfCard"><div class="tfname">1 UUR</div><div class="dir" id="mtf1h">—</div></div>
-            <div class="mtfCard"><div class="tfname">4 UUR</div><div class="dir" id="mtf4h">—</div></div>
-            <div class="mtfCard"><div class="tfname">1 DAG</div><div class="dir" id="mtf1d">—</div></div>
-          </div>
-        </div>
-      </section>
+    <details class="scannerDetails"><summary><span>Kansen zoeken <span class="summarySub">Scan meerdere liquide EUR-markten en open alleen de interessantste setups</span></span></summary><section class="scannerPanel panel"><div class="scannerHead"><div><h2>Opportunity Scanner</h2><div class="scannerSub">1u + 4u trend, momentum, structuur en patronen.</div></div><button class="scanBtn" id="scanBtn" type="button">⚡ Scan kansen</button></div><div class="scannerGrid" id="scannerGrid"><div class="scanCard"><div class="scanMeta">Druk op “Scan kansen” om de beste setups naast elkaar te zetten.</div></div></div></section></details>
+  </main>
 
-      <section class="panel">
-        <div class="section">
-          <div class="sectionTitle"><h2>Tradeplan</h2><span class="badge" id="qualityBadge">—</span></div>
-          <div class="tradeHero"><div><div class="small">Scenario</div><div class="big" id="planSide">WACHTEN</div></div><div style="text-align:right"><div class="small">Setup-score</div><div class="big" id="planScore">—</div></div></div>
-          <div class="levels">
-            <div class="level entry"><div class="k">Entryzone</div><div class="v" id="entryLevel">—</div></div>
-            <div class="level stop"><div class="k">Stop loss</div><div class="v" id="stopLevel">—</div></div>
-            <div class="level tp"><div class="k">Take profit 1</div><div class="v" id="tp1">—</div></div>
-            <div class="level tp"><div class="k">Take profit 2 / 3</div><div class="v" id="tp23">—</div></div>
-          </div>
-          <div class="rr"><span>Risk / reward naar TP2</span><b id="rrValue">—</b></div>
-        </div>
-        <div class="section">
-          <div class="sectionTitle"><h2>Conclusie</h2><span class="badge" id="updatedAt">—</span></div>
-          <div class="conclusion" id="conclusion">Data wordt geladen…</div>
-        </div>
-      </section>
-
-
-      <section class="panel">
-        <div class="section">
-          <div class="sectionTitle"><h2>Patroonherkenning</h2><span class="badge" id="patternCount">0 gevonden</span></div>
-          <div class="patternGrid" id="patternGrid"><div class="patternCard"><div class="patternWhy">Patronen worden berekend zodra de koersdata geladen is.</div></div></div>
-        </div>
-        <div class="section beginnerOnly">
-          <div class="sectionTitle"><h2>Wat betekent dit?</h2><span class="badge">Leer mee</span></div>
-          <div class="learnBox" id="learnBox"><b>Tip:</b> een patroon is nooit genoeg. De app combineert het met trend, momentum, meerdere timeframes en risico.</div>
-        </div>
-      </section>
-
-      <section class="panel">
-        <div class="section">
-          <div class="sectionTitle"><h2>Bull / Base / Bear</h2><span class="badge">scenario-engine</span></div>
-          <div class="scenarioGrid" id="scenarioGrid"></div>
-        </div>
-        <div class="section">
-          <div class="sectionTitle"><h2>Trade-checklist</h2><span class="badge" id="checkScore">—</span></div>
-          <div class="checklist" id="checklist"></div>
-        </div>
-      </section>
-
-      <section class="panel">
-        <div class="section">
-          <div class="sectionTitle"><h2>Risicocalculator</h2><span class="badge">optioneel</span></div>
-          <div class="riskForm">
-            <div><label for="accountSize">Account (€)</label><input id="accountSize" inputmode="decimal" type="number" min="1" step="100" value="2500"></div>
-            <div><label for="riskPct">Risico per trade (%)</label><input id="riskPct" inputmode="decimal" type="number" min=".1" max="10" step=".1" value="1"></div>
-          </div>
-          <div class="riskOut"><span style="color:var(--muted)">Max. risico</span><br><b id="riskEuro">€ 25,00</b><div id="positionSize" style="color:var(--muted);margin-top:4px">Positieomvang verschijnt zodra een setup geldig is.</div></div>
-          <div class="paperActions"><button class="paperBtn primary" id="paperTradeBtn" type="button">＋ Paper trade</button><button class="paperBtn" id="clearJournalBtn" type="button">Wis journal</button></div>
-        </div>
-        <div class="section">
-          <div class="sectionTitle"><h2>Paper journal</h2><span class="badge" id="journalStats">0 trades</span></div>
-          <div class="journalList" id="journalList"><div class="proNote">Nog geen gesimuleerde trades.</div></div>
-        </div>
-      </section>
-    </aside>
-  </div>
-
-
-  <section class="scannerPanel panel">
-    <div class="scannerHead"><div><h2>Opportunity Scanner</h2><div class="scannerSub">Scant liquide EUR-markten op 1u + 4u trend, momentum, structuur en patronen. Klik een kaart om hem te openen.</div></div><button class="scanBtn" id="scanBtn" type="button">⚡ Scan kansen</button></div>
-    <div class="scannerGrid" id="scannerGrid"><div class="scanCard"><div class="scanMeta">Druk op “Scan kansen” om de beste setups naast elkaar te zetten.</div></div></div>
-  </section>
-
-  <div class="footer">
-    <span>Databron: Bitvavo publieke marktdata. Charts: <a href="https://www.tradingview.com/" target="_blank" rel="noopener" style="color:#89a5bd">TradingView Lightweight Charts™</a>.</span>
-    <span>Technische scenario’s zijn probabilistisch, geen garantie en geen persoonlijk beleggingsadvies. De app kan markt-/macro-nieuws niet volledig voorspellen: controleer altijd nieuws, liquiditeit en eigen risico.</span>
-  </div>
+  <div class="footer"><span>Databron: Bitvavo publieke marktdata. Charts: <a href="https://www.tradingview.com/" target="_blank" rel="noopener" style="color:#89a5bd">TradingView Lightweight Charts™</a>.</span><span>Technische scenario’s zijn probabilistisch. Gebruik altijd een stop, houd risico klein en controleer belangrijk nieuws vóór een trade.</span></div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -795,6 +741,7 @@
   $("#refreshBtn").addEventListener("click",()=>load(true));
   $("#accountSize").addEventListener("input",updateRisk);$("#riskPct").addEventListener("input",updateRisk);
   $("#beginnerMode").addEventListener("click",()=>setMode("beginner"));$("#proMode").addEventListener("click",()=>setMode("pro"));
+  document.querySelectorAll("details").forEach(details=>details.addEventListener("toggle",()=>{if(details.open)setTimeout(()=>{resize();if(state.analysis){rsiChart.timeScale().fitContent();macdChart.timeScale().fitContent();}},50)}));
   $("#scanBtn").addEventListener("click",scanOpportunities);$("#scannerGrid").addEventListener("click",e=>{const b=e.target.closest("[data-market]");if(!b)return;state.market=b.dataset.market;$("#marketSelect").value=state.market;state.tf="1h";document.querySelectorAll(".tf").forEach(x=>x.classList.toggle("active",x.dataset.tf==="1h"));window.scrollTo({top:0,behavior:"smooth"});load(true)});
   $("#paperTradeBtn").addEventListener("click",()=>{const p=state.plan;if(!p||p.side==="WAIT"){toast("Er is nu geen geldige setup om te simuleren.");return}const j=getJournal();j.push({market:state.market,side:p.side,entry:p.entry,entryLow:p.entryLow,entryHigh:p.entryHigh,stop:p.stop,tp:p.tp2,time:Date.now(),status:"PENDING",score:p.score});saveJournal(j);toast("Paper trade toegevoegd als PENDING. Hij opent pas wanneer de entryzone echt wordt geraakt.")});
   $("#clearJournalBtn").addEventListener("click",()=>{localStorage.removeItem("csl-journal");renderJournal()});
