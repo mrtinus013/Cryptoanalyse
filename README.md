@@ -37,3 +37,9 @@ Deze app maakt technische scenario's op basis van marktdata. Het is geen garanti
 - TradingView Lightweight Charts
 
 Technische chart-library is vastgezet op Lightweight Charts 5.2.1 voor reproduceerbaar gedrag.
+
+## v1.1 – schaalfix
+- Oude ENTRY/SL/TP-lijnen worden verwijderd vóór het laden van een nieuwe markt.
+- Prijs- en tijdas worden na markt/timeframe-wissels expliciet opnieuw ge-autoscaled.
+- Vertraagde API-responses van een eerder geselecteerde markt worden genegeerd.
+- Live WebSocket-candles werken nu ook de chart en indicatorseries bij zonder automatisch je zoom te resetten.

@@ -222,7 +222,7 @@
 (() => {
   "use strict";
   const $ = s => document.querySelector(s);
-  const state = {market:"BTC-EUR", tf:"1h", candles:[], analysis:null, mtf:{}, ws:null, timer:null, renderTimer:null, mtfTimer:null, priceLines:[]};
+  const state = {market:"BTC-EUR", tf:"1h", candles:[], analysis:null, mtf:{}, ws:null, timer:null, renderTimer:null, mtfTimer:null, priceLines:[], loadSeq:0};
   const COLORS = {bg:"#08131f", grid:"rgba(126,166,200,.08)", text:"#819bb1", up:"#4be3a0", down:"#ff6b79", cyan:"#42dcff", purple:"#bb8cff", amber:"#ffca6a", bb:"rgba(125,157,182,.55)", blue:"#5f83ff"};
   const TF_LABEL = {"5m":"5 min","15m":"15 min","1h":"1 uur","4h":"4 uur","1d":"1 dag"};
   const MTF = ["15m","1h","4h","1d"];
@@ -270,7 +270,7 @@
   const rsiSeries=addSeriesCompat(rsiChart,"LineSeries",{color:COLORS.cyan,lineWidth:2,priceLineVisible:false,lastValueVisible:true});
   const rsi70=addSeriesCompat(rsiChart,"LineSeries",{color:"rgba(255,107,121,.35)",lineWidth:1,lineStyle:2,priceLineVisible:false,lastValueVisible:false});
   const rsi30=addSeriesCompat(rsiChart,"LineSeries",{color:"rgba(75,227,160,.35)",lineWidth:1,lineStyle:2,priceLineVisible:false,lastValueVisible:false});
-  rsiChart.priceScale("right").applyOptions({autoScale:false,scaleMargins:{top:.08,bottom:.08}});
+  rsiChart.priceScale("right").applyOptions({autoScale:true,scaleMargins:{top:.08,bottom:.08}});
 
   const macdChart=LightweightCharts.createChart($("#macdChart"),chartOptions(150));
   const macdHist=addSeriesCompat(macdChart,"HistogramSeries",{priceLineVisible:false,lastValueVisible:false,priceFormat:{type:"price",precision:4,minMove:.0001}});
@@ -439,7 +439,22 @@
     if(rd.length){rsi70.setData([{time:rd[0].time,value:70},{time:rd.at(-1).time,value:70}]);rsi30.setData([{time:rd[0].time,value:30},{time:rd.at(-1).time,value:30}])}
     macdLineSeries.setData(seriesData(a.c,a.m.line));macdSignalSeries.setData(seriesData(a.c,a.m.signal));
     macdHist.setData(a.c.map((x,i)=>a.m.hist[i]==null?null:{time:timeSec(x.time),value:a.m.hist[i],color:a.m.hist[i]>=0?"rgba(75,227,160,.72)":"rgba(255,107,121,.72)"}).filter(Boolean));
-    priceChart.timeScale().fitContent();
+  }
+
+  function resetChartScale(){
+    // Bij een markt/timeframe-wissel eerst alle assen opnieuw laten autoscalen.
+    // Dit gebeurt pas nadat de oude trade-levels verwijderd en de nieuwe levels getekend zijn.
+    priceChart.priceScale("right").applyOptions({autoScale:true});
+    rsiChart.priceScale("right").applyOptions({autoScale:true});
+    macdChart.priceScale("right").applyOptions({autoScale:true});
+    requestAnimationFrame(()=>{
+      priceChart.timeScale().fitContent();
+      // De indicatorgrafieken volgen de hoofdgrafiek via de gesynchroniseerde logical range.
+      // Nogmaals autoscale forceren voorkomt dat een vorige coin-prijsschaal blijft hangen.
+      priceChart.priceScale("right").applyOptions({autoScale:true});
+      rsiChart.priceScale("right").applyOptions({autoScale:true});
+      macdChart.priceScale("right").applyOptions({autoScale:true});
+    });
   }
 
   function setBar(id,v){$(id).style.width=clamp(v,0,100)+"%"}
@@ -515,7 +530,12 @@
           }
           state.candles.sort((a,b)=>a.time-b.time);state.candles=state.candles.slice(-600);
           if(!state.renderTimer){
-            state.renderTimer=setTimeout(()=>{state.renderTimer=null;render(analyze(state.candles));},350);
+            state.renderTimer=setTimeout(()=>{
+              state.renderTimer=null;
+              const liveAnalysis=analyze(state.candles);
+              updateCharts(liveAnalysis);
+              render(liveAnalysis);
+            },350);
           }
         }
       });
@@ -525,15 +545,30 @@
   }
 
   async function load(show=true){
+    const seq=++state.loadSeq;
+    const requestedMarket=state.market, requestedTf=state.tf;
     if(show)$("#loading").classList.add("show");
     try{
       await refreshMtf();
-      state.candles=await fetchCandles(state.market,state.tf,600);
-      const a=analyze(state.candles); updateCharts(a); render(a); startWs(); setLive(true,"LIVE · Bitvavo");
+      const candles=await fetchCandles(requestedMarket,requestedTf,600);
+      // Negeer een trage response van een markt/timeframe dat intussen alweer verlaten is.
+      if(seq!==state.loadSeq || requestedMarket!==state.market || requestedTf!==state.tf) return;
+      state.candles=candles;
+      const a=analyze(state.candles);
+
+      // Cruciaal: oude BTC/ETH/etc. ENTRY/SL/TP-lijnen moeten weg vóór de nieuwe
+      // dataset wordt ingeschaald, anders kunnen ze de prijsas van de nieuwe coin platdrukken.
+      clearPriceLines();
+      updateCharts(a);
+      render(a);
+      resetChartScale();
+      startWs();
+      setLive(true,"LIVE · Bitvavo");
     }catch(e){
+      if(seq!==state.loadSeq) return;
       console.error(e);setLive(false,"Dataprobleem");toast("Kon live marktdata niet laden. Controleer internet/CORS en probeer opnieuw.");
       $("#conclusion").innerHTML="<b>Geen betrouwbare data.</b> Er wordt bewust geen tradeplan berekend.";
-    }finally{$("#loading").classList.remove("show")}
+    }finally{if(seq===state.loadSeq)$("#loading").classList.remove("show")}
   }
 
   $("#marketSelect").addEventListener("change",e=>{state.market=e.target.value;load(true)});
