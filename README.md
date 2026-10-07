@@ -1,45 +1,67 @@
-# Crypto Signal Lab
+# Crypto Signal Lab · Trading Copilot v2
 
-Een standalone live crypto-analysewebapp.
+Een zelfstandige crypto trading-assistent die live publieke Bitvavo-marktdata combineert met technische analyse, patroonherkenning, multi-timeframe confluence, scenario's, risk management en paper trading.
 
-## Wat zit erin
-- Live Bitvavo candles via publieke REST + WebSocket API
-- BTC-EUR, ETH-EUR, SOL-EUR en automatisch alle beschikbare EUR-markten
-- Timeframes: 5m, 15m, 1h, 4h, 1d
-- Candlestick chart
-- EMA 20 / 50 / 200
+## Nieuw in Copilot v2
+- Beginner / Pro-modus
+- Grote Trading Copilot-beslissing: LONG KANDIDAAT / SHORT KANDIDAAT / WACHT OP PULLBACK / NIET TRADEN
+- Altijd een trigger, invalidatiepunt en belangrijkste risicofactor
+- Automatische patroonherkenning:
+  - EMA20 pullback
+  - bullish breakout / bearish breakdown
+  - hammer / shooting star
+  - inside bar
+  - bullish / bearish engulfing
+  - double top / double bottom
+  - Bollinger squeeze
+  - bullish / bearish RSI-divergentie
+- Patronen worden waar mogelijk ook als markers/levels op de chart gezet
+- Automatische support- en resistancelevels
+- Bull / Base / Bear scenario-engine met aparte scenario-scores en triggers
+- 7-punts trade-checklist
+- Strengere NO-TRADE-logica
+- Opportunity Scanner voor meerdere EUR-markten op 1u + 4u
+- Klik vanuit de scanner rechtstreeks een coin open
+- Paper trading journal in localStorage
+- Paper trades beginnen als PENDING en worden pas OPEN als de entryzone echt is geraakt
+- Conservatieve afhandeling wanneer SL en TP in dezelfde candle vallen
+
+## Reeds aanwezig
+- Live Bitvavo REST + WebSocket candles
+- Alle beschikbare EUR-markten
+- 5m / 15m / 1u / 4u / 1D
+- Candlesticks
+- EMA20 / EMA50 / EMA200
 - Bollinger Bands
-- RSI 14
+- RSI14
 - MACD 12/26/9
-- ATR 14
-- ADX 14
+- ATR14
+- ADX14
 - Marktstructuur
-- Multi-timeframe confluence (15m / 1h / 4h / 1d)
-- LONG / SHORT / WACHTEN-classificatie
-- Entryzone, Stop Loss, TP1/TP2/TP3 en R:R
-- Risicocalculator op basis van accountgrootte en risico per trade
-- Responsive layout voor iPhone, tablet en desktop
+- Multi-timeframe confluence 15m / 1u / 4u / 1D
+- Entryzone, stop loss, TP1, TP2, TP3
+- Risk/reward
+- Positiecalculator op accountgrootte en risico per trade
+- Responsive iPhone/tablet/desktop layout
+
+## Beginner-modus
+De nadruk ligt op gewone taal: wat gebeurt er, waarom is dat belangrijk, wat moet er eerst gebeuren vóór een trade, en wanneer is het idee ongeldig. De drukke RSI/MACD-subcharts worden verborgen.
+
+## Pro-modus
+Toont de onderliggende indicatorcharts en technische details, naast dezelfde scenario- en risk engine.
+
+## Opportunity Scanner
+De scanner haalt voor een geselecteerde set grotere EUR-markten 1u- en 4u-candles op en rangschikt setups op trend, momentum, ADX, volatiliteit en patroonconfluence. Een hoge scanner-score is geen winstkans of statistische probability; het is een interne kwaliteitsscore.
+
+## Paper journal
+Alles blijft lokaal in de browser via localStorage. Er is geen accountkoppeling of echte orderuitvoering. Een voorgestelde paper trade staat eerst PENDING. Hij wordt pas OPEN wanneer een volgende candle daadwerkelijk door de entryzone loopt. Daarna wordt SL of TP2 gevolgd zolang die markt opnieuw in de app wordt geladen.
 
 ## Starten
-Open `index.html` in een moderne browser.
-
-Voor de betrouwbaarste werking kun je hem op GitHub Pages hosten:
-1. Maak een nieuwe repository.
-2. Upload `index.html`.
-3. Settings -> Pages -> Deploy from branch.
-4. Open de gegenereerde Pages-URL.
+Open `index.html` in een moderne browser, of host het bestand op GitHub Pages.
 
 ## Belangrijk
-Deze app maakt technische scenario's op basis van marktdata. Het is geen garantie op winst en geen persoonlijk beleggingsadvies. Een technisch signaal kan abrupt ongeldig worden door nieuws, liquidaties, spreads of marktregimewissels.
+Dit is een technische beslissingsondersteuner, geen winstmachine en geen persoonlijk beleggingsadvies. Marktdata en technische patronen kunnen abrupt ongeldig worden door nieuws, liquidaties, spreads, bugs, dataproblemen of regimewissels. Gebruik bij echt geld altijd een eigen risicolimiet en controleer belangrijk macro- en cryptonieuws.
 
 ## Externe onderdelen
-- Bitvavo publieke marktdata
-- TradingView Lightweight Charts
-
-Technische chart-library is vastgezet op Lightweight Charts 5.2.1 voor reproduceerbaar gedrag.
-
-## v1.1 – schaalfix
-- Oude ENTRY/SL/TP-lijnen worden verwijderd vóór het laden van een nieuwe markt.
-- Prijs- en tijdas worden na markt/timeframe-wissels expliciet opnieuw ge-autoscaled.
-- Vertraagde API-responses van een eerder geselecteerde markt worden genegeerd.
-- Live WebSocket-candles werken nu ook de chart en indicatorseries bij zonder automatisch je zoom te resetten.
+- Publieke Bitvavo marktdata
+- TradingView Lightweight Charts 5.2.1
