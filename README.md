@@ -1,15 +1,27 @@
-# Crypto Signal Lab · Calm Trading Copilot v3
+# Crypto Signal Lab · Unified Trading Copilot v4
 
-Deze versie is bewust opnieuw ontworpen voor overzicht.
+## Belangrijkste wijziging
+De app geeft nu **één gecombineerd advies per tradingpair**.
 
-## Hoofdflow
-1. Kies coin en timeframe.
-2. Lees direct LONG / SHORT / WACHTEN / NIET TRADEN.
-3. Zie entryzone, stop loss, take profits en risk/reward.
-4. Lees trigger, invalidatie en belangrijkste risico.
-5. Bekijk de chart.
-6. Lees waarom de app tot de conclusie komt.
+Het hoofdadvies verandert niet meer omdat je een andere grafiekweergave opent.
 
-Verdiepende onderdelen zitten achter uitklapbare secties: multi-timeframe scores, patronen, scenario's, RSI/MACD in Pro, risico, paper journal en opportunity scanner.
+### Weging
+- 15m: timing (10%)
+- 1u: setup en entry (30%)
+- 4u: hoofdtrend (40%)
+- 1D: bredere context (20%)
 
-De live Bitvavo-data en analyse-engine uit v2 zijn behouden.
+Een LONG of SHORT wordt alleen afgegeven wanneer de gezamenlijke score sterk genoeg is en de belangrijke timeframes niet hard tegen elkaar ingaan. Anders staat er **NIET HANDELEN**.
+
+## Interface
+- Tradingpair kiezen bovenaan
+- Eén groot gecombineerd advies: LONG / SHORT / NIET HANDELEN
+- Eén confidence-score
+- Eén entryzone, stop loss en TP-plan
+- Trigger, invalidatie en belangrijkste risico
+- Chart-timeframe is verplaatst naar de grafiek en is alleen een weergavekeuze
+- Verdiepende timeframe-data blijft beschikbaar, maar zit uit de hoofdflow
+- Opportunity Scanner gebruikt nu dezelfde 4-timeframe combinatie per coin
+
+## Data
+Publieke Bitvavo REST + WebSocket marktdata.
