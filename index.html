@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#08111f" />
-  <title>Crypto Signal Lab · Unified Trading Copilot</title>
+  <title>Crypto Signal Lab · Trading Intelligence v5</title>
   <script src="https://unpkg.com/lightweight-charts@5.2.1/dist/lightweight-charts.standalone.production.js"></script>
   <style>
     :root{
@@ -248,86 +248,113 @@
       .chartHint{max-width:300px}
     }
 
-  </style>
+  
+/* ===== Trading Intelligence v5 ===== */
+:root{--v5-line:rgba(152,195,232,.12);--v5-green:#4be3a0;--v5-red:#ff6b79;--v5-amber:#ffca6a;--v5-cyan:#42dcff}
+body{background:radial-gradient(circle at 10% -12%,rgba(56,148,255,.10),transparent 38rem),radial-gradient(circle at 92% 0%,rgba(43,224,191,.055),transparent 30rem),linear-gradient(180deg,#07101b 0,#04080e 100%)}
+.app{max-width:1360px;padding:14px 16px 28px}.topbar{margin-bottom:12px}.brand h1{font-size:19px}
+.brandMark{font-size:9px;font-weight:900;letter-spacing:.9px;color:#06131d;background:var(--cyan);padding:3px 6px;border-radius:6px;vertical-align:2px}
+.v5-controls{display:grid;grid-template-columns:minmax(190px,250px) minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px;margin-bottom:12px}
+.v5-market{display:flex;align-items:center;gap:9px}.v5-market label{font-size:10px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.6px}.v5-market select{flex:1;min-width:0;font-weight:850}
+.engineLine{display:flex;gap:7px;align-items:center;min-width:0;color:var(--muted);font-size:10px}.engineLine .engineDot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px rgba(75,227,160,.55)}.engineLine b{color:#dcecf7;font-size:11px}.engineLine span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5-actions{display:flex;gap:7px}.v5-btn{min-height:40px;padding:8px 11px;border-radius:10px;border:1px solid var(--border);background:#0b1a2a;color:var(--text);font-weight:750}
+.v5-card{border:1px solid var(--v5-line);border-radius:17px;background:linear-gradient(180deg,rgba(13,29,47,.90),rgba(7,18,30,.92));box-shadow:0 13px 38px rgba(0,0,0,.19);overflow:hidden}
+.v5-hero{display:grid;grid-template-columns:minmax(0,1.28fr) minmax(320px,.78fr) minmax(255px,.62fr);gap:10px;margin-bottom:10px}
+.decisionCore{padding:18px 19px;position:relative;min-height:236px}.decisionCore:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 0 0,rgba(66,220,255,.075),transparent 50%)}
+.eyebrow{position:relative;color:var(--muted);font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:1px}.pairPrice{position:relative;display:flex;justify-content:space-between;gap:14px;margin-top:10px}.pairPrice .pair{font-size:15px;font-weight:850}.pairPrice .price{font-size:14px;color:#d9eaf5;font-variant-numeric:tabular-nums}
+.mainCall{position:relative;font-size:44px;line-height:1;font-weight:950;letter-spacing:-1.8px;margin:16px 0 8px}.mainExplain{position:relative;color:#c7d9e7;line-height:1.55;max-width:680px;font-size:13px}
+.confidenceLine{position:relative;display:flex;align-items:center;gap:10px;margin-top:16px}.confidenceTrack{height:7px;flex:1;max-width:260px;border-radius:20px;background:#07121d;overflow:hidden;border:1px solid rgba(255,255,255,.035)}.confidenceTrack i{height:100%;display:block;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--amber),var(--cyan),var(--green));transition:width .28s ease}.confidenceNum{font-weight:900;font-size:12px}
+.microPills{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;position:relative}.microPill{font-size:9px;color:#9db5c9;border:1px solid var(--border);background:rgba(4,13,22,.5);padding:5px 7px;border-radius:999px}
+.tradeCard,.edgeCard{padding:16px}.cardHead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.cardHead h2{font-size:12px;margin:0}.mutedTiny{font-size:9px;color:var(--muted)}
+.planGrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.planCell{border:1px solid var(--border);background:rgba(4,14,24,.48);border-radius:11px;padding:9px 10px}.planCell .k{font-size:8px;text-transform:uppercase;letter-spacing:.65px;color:var(--muted)}.planCell .v{font-weight:850;margin-top:3px;font-size:12px}.planCell.wide{grid-column:1/-1}
+.edgeCard{display:flex;flex-direction:column}.edgeBig{font-size:34px;font-weight:950;letter-spacing:-1px;margin-top:5px}.edgeSub{font-size:10px;color:var(--muted);line-height:1.45}.edgeMetrics{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px}.edgeMetric{padding:8px;border-radius:10px;background:rgba(4,14,24,.48);border:1px solid var(--border)}.edgeMetric span{display:block;font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.55px}.edgeMetric b{display:block;margin-top:3px;font-size:12px}
+.pulseStrip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-bottom:10px}.pulseItem{min-width:0;border:1px solid var(--v5-line);border-radius:13px;background:rgba(8,20,33,.80);padding:10px 11px}.pulseItem .k{font-size:8px;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pulseItem .v{font-size:13px;font-weight:850;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pulseItem .s{font-size:8px;color:#68849a;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5-section{margin-top:10px}.sectionHeader{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:0 2px 8px}.sectionHeader h2{font-size:13px;margin:0}.sectionHeader p{font-size:9px;color:var(--muted);margin:2px 0 0}
+.evidenceGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.evidenceCard{padding:14px}.evidenceList{display:grid;gap:7px}.evRow{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:8px;align-items:center;padding:8px 9px;border:1px solid var(--border);border-radius:10px;background:rgba(4,14,24,.38)}.evIcon{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-weight:950;font-size:11px}.evRow.good .evIcon{color:var(--green);background:rgba(75,227,160,.09)}.evRow.bad .evIcon{color:var(--red);background:rgba(255,107,121,.09)}.evTitle{font-size:10px;font-weight:800;color:#d7e7f2}.evMeta{font-size:8px;color:var(--muted);margin-top:1px}.evWeight{font-size:9px;color:var(--muted)}
+.chartPanelV5{overflow:hidden}.chartToolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 13px;border-bottom:1px solid var(--border)}.chartToolbar h2{font-size:12px;margin:0}.chartToolbar .hint{font-size:9px;color:var(--muted);margin-top:2px}.chartTools{display:flex;align-items:center;gap:8px}
+.radarTop{padding:13px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:12px}.radarTop h2{font-size:12px;margin:0}.radarGridV5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;padding:10px}.radarItem{border:1px solid var(--border);border-radius:12px;background:rgba(5,15,25,.52);padding:10px;text-align:left;color:var(--text);min-width:0}.radarRank{font-size:8px;color:var(--muted)}.radarPair{font-size:11px;font-weight:900;margin-top:3px}.radarDecision{font-size:13px;font-weight:950;margin-top:8px}.radarMeta{font-size:8px;color:var(--muted);line-height:1.45;margin-top:4px}
+.detailsV5{margin-top:10px;border:1px solid var(--border);border-radius:15px;overflow:hidden;background:rgba(8,20,33,.66)}.detailsV5>summary{cursor:pointer;padding:13px 14px;list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:850}.detailsV5>summary::-webkit-details-marker{display:none}.detailsV5>summary:after{content:"＋";color:var(--cyan);font-size:17px}.detailsV5[open]>summary:after{content:"−"}.detailsBody{padding:0 12px 12px;border-top:1px solid var(--border)}.detailsGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.detailCard{border:1px solid var(--border);border-radius:12px;background:rgba(4,13,22,.42);padding:12px}.contextUnavailable{color:var(--muted)}
+@media(max-width:1080px){.v5-hero{grid-template-columns:1fr 1fr}.decisionCore{grid-column:1/-1}.radarGridV5{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.app{padding:9px}.subtitle{display:none}.v5-controls{display:flex;flex-wrap:wrap}.v5-market{width:100%}.engineLine{width:100%;order:3}.v5-actions{width:100%}.v5-actions>*{flex:1}.v5-hero{grid-template-columns:1fr}.decisionCore{grid-column:auto}.mainCall{font-size:36px}.pulseStrip{grid-template-columns:repeat(2,1fr)}.pulseItem:last-child{grid-column:1/-1}.evidenceGrid{grid-template-columns:1fr}.radarGridV5{grid-template-columns:1fr 1fr}.chartToolbar{align-items:flex-start;flex-direction:column}.chartTools{width:100%}.chartTools .tfs{flex:1}.chartTools .tf{flex:1}.detailsGrid{grid-template-columns:1fr}}
+@media(max-width:420px){.radarGridV5{grid-template-columns:1fr}.planGrid{grid-template-columns:1fr}.planCell.wide{grid-column:auto}}
+
+</style>
 </head>
 <body>
 <div class="app">
-  <header class="topbar">
-    <div class="brand">
-      <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4-4 3 2 5-7 4 3" stroke="#42dcff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 20h16" stroke="#5f83ff" stroke-width="1.4" stroke-linecap="round"/></svg></div>
-      <div><h1>Crypto Signal Lab <span style="color:var(--cyan);font-size:12px;vertical-align:top">COPILOT</span></h1><div class="subtitle">Eén gecombineerd advies per markt · 15m + 1u + 4u + 1D</div></div>
-    </div>
-    <div class="livebox"><span id="liveDot" class="dot"></span><span id="liveText">Verbinden…</span></div>
-  </header>
+<header class="topbar">
+  <div class="brand"><div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16l4-4 3 2 5-7 4 3" stroke="#42dcff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 20h16" stroke="#5f83ff" stroke-width="1.4" stroke-linecap="round"/></svg></div><div><h1>Crypto Signal Lab <span class="brandMark">INTELLIGENCE v5</span></h1><div class="subtitle">Beslissen op bewijs · één oordeel per markt · live Bitvavo-data</div></div></div>
+  <div class="livebox"><span id="liveDot" class="dot"></span><span id="liveText">Verbinden…</span></div>
+</header>
 
-  <section class="panel quickControls">
-    <div class="field marketField"><label for="marketSelect">Tradingpair</label><select id="marketSelect"><option>BTC-EUR</option><option>ETH-EUR</option><option>SOL-EUR</option><option>XRP-EUR</option><option>HBAR-EUR</option><option>ADA-EUR</option><option>LINK-EUR</option><option>DOGE-EUR</option></select></div>
-    <div class="unifiedChip" title="Het hoofdadvies wordt altijd uit deze vier timeframes samengesteld"><span class="unifiedDot"></span><span><b>Gecombineerd advies</b><small>15m timing · 1u setup · 4u trend · 1D context</small></span></div>
-    <button class="refresh" id="refreshBtn" type="button">↻ Analyse vernieuwen</button>
-    <div class="modeToggle"><button class="modeBtn active" id="beginnerMode" type="button">Eenvoudig</button><button class="modeBtn" id="proMode" type="button">Pro</button></div>
-  </section>
+<section class="v5-card v5-controls">
+  <div class="v5-market"><label for="marketSelect">Markt</label><select id="marketSelect"><option>BTC-EUR</option><option>ETH-EUR</option><option>SOL-EUR</option><option>XRP-EUR</option><option>HBAR-EUR</option><option>ADA-EUR</option><option>LINK-EUR</option><option>DOGE-EUR</option></select></div>
+  <div class="engineLine"><span class="engineDot"></span><span><b>Decision Engine actief</b> · 15m timing + 1u setup + 4u trend + 1D context + marktcontext</span></div>
+  <div class="v5-actions"><button class="v5-btn" id="refreshBtn" type="button">↻ Vernieuw</button><div class="modeToggle"><button class="modeBtn active" id="beginnerMode" type="button">Eenvoudig</button><button class="modeBtn" id="proMode" type="button">Pro</button></div></div>
+</section>
 
-  <section class="decisionPanel panel">
-    <div class="decisionInner">
-      <div>
-        <div class="decisionEyebrow">Gecombineerd marktadvies · onafhankelijk van de geopende grafiek</div>
-        <div class="decisionAction warn" id="copilotAction">ANALYSEREN…</div>
-        <div class="decisionSummary" id="copilotSummary">De app bouwt eerst het marktbeeld op. Alleen bij voldoende confluence verschijnt een concreet tradevoorstel.</div>
-        <div class="decisionPills"><span class="pill" id="copilotConfidence">Setup —</span><span class="pill" id="copilotPattern">Patroon —</span><span class="pill" id="copilotRegime">Consensus —</span><span class="badge neutral" id="signalBadge">WACHTEN</span></div>
-      </div>
-      <div>
-        <div class="tradeHero"><div><div class="small">Tradeplan</div><div class="big warn" id="planSide">WACHTEN</div></div><div style="text-align:right"><div class="small">Setup-score</div><div class="big" id="planScore">—</div></div></div>
-        <div class="tradeSnapshot">
-          <div class="level entry"><div class="k">Entryzone</div><div class="v" id="entryLevel">—</div></div>
-          <div class="level stop"><div class="k">Stop loss</div><div class="v" id="stopLevel">—</div></div>
-          <div class="level tp"><div class="k">Take profit 1</div><div class="v" id="tp1">—</div></div>
-          <div class="level tp"><div class="k">Take profit 2 / 3</div><div class="v" id="tp23">—</div></div>
-          <div class="rr"><span>Risk / reward naar TP2</span><b id="rrValue">—</b></div>
-        </div>
-        <div style="display:flex;justify-content:flex-end;margin-top:8px"><span class="badge" id="qualityBadge">—</span></div>
-      </div>
-    </div>
-    <div class="guidanceStrip">
-      <div class="guideItem"><div class="k">Wacht op / trigger</div><div class="v" id="copilotTrigger">Wacht op analyse</div></div>
-      <div class="guideItem"><div class="k">Ongeldig als</div><div class="v" id="copilotInvalid">—</div></div>
-      <div class="guideItem"><div class="k">Belangrijkste risico</div><div class="v" id="copilotRisk">—</div></div>
-    </div>
-  </section>
+<section class="v5-hero">
+  <article class="v5-card decisionCore">
+    <div class="eyebrow">Huidige beslissing</div><div class="pairPrice"><span class="pair" id="heroPair">BTC-EUR</span><span class="price" id="lastPrice">—</span></div>
+    <div class="mainCall warn" id="copilotAction">ANALYSEREN…</div>
+    <div class="mainExplain" id="copilotSummary">De engine bouwt het multi-timeframe marktbeeld op en zoekt pas daarna naar een trade.</div>
+    <div class="confidenceLine"><span class="mutedTiny">Confidence</span><span class="confidenceTrack"><i id="confidenceFill"></i></span><span class="confidenceNum" id="copilotConfidence">—</span></div>
+    <div class="microPills"><span class="microPill" id="copilotRegime">Consensus —</span><span class="microPill" id="copilotPattern">Patroon —</span><span class="badge neutral" id="signalBadge">WACHTEN</span></div>
+  </article>
+  <article class="v5-card tradeCard">
+    <div class="cardHead"><div><h2>Tradeplan</h2><div class="mutedTiny">Alleen actief bij voldoende edge</div></div><span class="badge" id="qualityBadge">—</span></div>
+    <div class="tradeHero"><div><div class="small">Richting</div><div class="big warn" id="planSide">GEEN TRADE</div></div><div style="text-align:right"><div class="small">Score</div><div class="big" id="planScore">—</div></div></div>
+    <div class="planGrid"><div class="planCell wide"><div class="k">Entryzone</div><div class="v" id="entryLevel">—</div></div><div class="planCell"><div class="k">Stop</div><div class="v" id="stopLevel">—</div></div><div class="planCell"><div class="k">R:R TP2</div><div class="v" id="rrValue">—</div></div><div class="planCell"><div class="k">TP1</div><div class="v" id="tp1">—</div></div><div class="planCell"><div class="k">TP2 / TP3</div><div class="v" id="tp23">—</div></div></div>
+  </article>
+  <article class="v5-card edgeCard">
+    <div class="cardHead"><div><h2>Historische edge</h2><div class="mutedTiny">Vergelijkbare 1u-setups</div></div><span class="badge" id="evidenceStatus">Laden</span></div>
+    <div class="edgeBig" id="edgeWinrate">—</div><div class="edgeSub" id="edgeSummary">De app meet hoe vergelijkbare technische omstandigheden historisch uitpakten.</div>
+    <div class="edgeMetrics"><div class="edgeMetric"><span>Voorbeelden</span><b id="edgeSamples">—</b></div><div class="edgeMetric"><span>Expectancy</span><b id="edgeExpectancy">—</b></div><div class="edgeMetric"><span>Wins</span><b id="edgeWins">—</b></div><div class="edgeMetric"><span>Losses</span><b id="edgeLosses">—</b></div></div>
+  </article>
+</section>
 
-  <main class="mainStack">
-    <section class="panel chartPanel">
-      <div class="chartTopbar">
-        <div>
-          <div class="chartTitle">Koersgrafiek</div>
-          <div class="chartHint">Dit verandert alleen de grafiekweergave — het hoofdadvies blijft gecombineerd.</div>
-        </div>
-        <div class="chartTfWrap"><span>Bekijk</span><div class="tfs compactTfs" id="timeframes"><button class="tf" data-tf="5m">5m</button><button class="tf" data-tf="15m">15m</button><button class="tf active" data-tf="1h">1u</button><button class="tf" data-tf="4h">4u</button><button class="tf" data-tf="1d">1D</button></div></div>
-      </div>
-      <div class="chartWrap"><div id="priceChart"><div class="chartLegend"><span class="ema20">EMA 20</span><span class="ema50">EMA 50</span><span class="ema200">EMA 200</span><span class="bb">Bollinger</span></div><div class="loadingOverlay" id="loading"><div class="loader"></div></div></div></div>
-    </section>
+<section class="pulseStrip">
+  <div class="pulseItem"><div class="k">Fear & Greed</div><div class="v" id="pulseFear">—</div><div class="s" id="pulseFearSub">Marktsentiment</div></div>
+  <div class="pulseItem"><div class="k">Totale markt 24u</div><div class="v" id="pulseMarket">—</div><div class="s">Brede richting</div></div>
+  <div class="pulseItem"><div class="k">BTC dominance</div><div class="v" id="pulseDom">—</div><div class="s">Kapitaalrotatie</div></div>
+  <div class="pulseItem"><div class="k">BTC funding</div><div class="v" id="pulseFunding">—</div><div class="s">Perpetual crowding</div></div>
+  <div class="pulseItem"><div class="k">Context impact</div><div class="v" id="pulseImpact">0</div><div class="s" id="pulseImpactSub">Op confidence</div></div>
+</section>
 
-    <section class="whyGrid">
-      <div class="panel whyPanel"><div class="sectionTitle"><h2>Waarom geeft de app dit advies?</h2><span class="badge" id="updatedAt">—</span></div><div class="conclusion" id="conclusion">Data wordt geladen…</div></div>
-      <div class="panel whyPanel beginnerOnly"><div class="sectionTitle"><h2>In gewone taal</h2><span class="badge">Leer mee</span></div><div class="miniLearn" id="learnBox"><b>Tip:</b> de app kijkt nooit naar één indicator, maar naar trend, momentum, structuur en meerdere timeframes samen.</div></div>
-    </section>
+<section class="v5-section">
+  <div class="sectionHeader"><div><h2>Bewijs voor en tegen</h2><p>De engine zoekt bewust naar confirmation bias en redenen waarom de trade kan mislukken.</p></div><span class="badge" id="updatedAt">—</span></div>
+  <div class="evidenceGrid">
+    <article class="v5-card evidenceCard"><div class="cardHead"><h2>✓ Ondersteunt het advies</h2><span class="badge long" id="forCount">0</span></div><div class="evidenceList" id="evidenceFor"></div></article>
+    <article class="v5-card evidenceCard"><div class="cardHead"><h2>! Spreekt ertegen / risico</h2><span class="badge neutral" id="againstCount">0</span></div><div class="evidenceList" id="evidenceAgainst"></div></article>
+  </div>
+</section>
 
-    <details class="advancedDetails">
-      <summary><span>Verdiepende analyse <span class="summarySub">Scores, timeframes, patronen, scenario's, indicatoren en risico</span></span></summary>
-      <div class="advancedBody"><div class="advancedGrid">
-        <section class="advancedCard"><div class="section"><div class="sectionTitle"><h2>Opbouw gecombineerd advies</h2><span class="badge" id="mtfSummary">—</span></div><div class="compactStats"><div class="stat"><div class="k">Laatste prijs</div><div class="v" id="lastPrice">—</div></div><div class="stat"><div class="k">24u</div><div class="v" id="change24">—</div></div><div class="stat"><div class="k">RSI 14 · 1u</div><div class="v" id="rsiStat">—</div></div><div class="stat"><div class="k">ATR · 1u</div><div class="v" id="atrStat">—</div></div><div class="stat"><div class="k">Regime · 1u</div><div class="v" id="regimeStat">—</div></div></div><div class="mtf" style="margin-top:12px"><div class="mtfCard"><div class="tfname">15 MIN · TIMING</div><div class="dir" id="mtf15">—</div></div><div class="mtfCard"><div class="tfname">1 UUR · SETUP</div><div class="dir" id="mtf1h">—</div></div><div class="mtfCard"><div class="tfname">4 UUR · TREND</div><div class="dir" id="mtf4h">—</div></div><div class="mtfCard"><div class="tfname">1 DAG · CONTEXT</div><div class="dir" id="mtf1d">—</div></div></div></div></section>
-        <section class="advancedCard"><div class="section"><div class="sectionTitle"><h2>Analyse-score</h2><span class="badge" id="checkScore">—</span></div><div class="scoreRow"><span class="name">Trend</span><span class="bar"><i id="trendBar"></i></span><span class="num" id="trendScore">—</span></div><div class="scoreRow"><span class="name">Momentum</span><span class="bar"><i id="momBar"></i></span><span class="num" id="momScore">—</span></div><div class="scoreRow"><span class="name">Structuur</span><span class="bar"><i id="structBar"></i></span><span class="num" id="structScore">—</span></div><div class="scoreRow"><span class="name">Confluence</span><span class="bar"><i id="confBar"></i></span><span class="num" id="confScore">—</span></div><div class="checklist" id="checklist" style="margin-top:12px"></div></div></section>
-        <section class="advancedCard"><div class="section"><div class="sectionTitle"><h2>Patronen</h2><span class="badge" id="patternCount">0 gevonden</span></div><div class="patternGrid" id="patternGrid"><div class="patternCard"><div class="patternWhy">Patronen worden berekend zodra de koersdata geladen is.</div></div></div></div></section>
-        <section class="advancedCard"><div class="section"><div class="sectionTitle"><h2>Bull / Base / Bear</h2><span class="badge">scenario's</span></div><div class="scenarioGrid" id="scenarioGrid"></div></div></section>
-        <section class="advancedCard advancedWide proOnly"><div class="indicatorGrid"><div class="indicator"><div class="indicatorHead"><span>RSI 14</span><span id="rsiLabel">—</span></div><div id="rsiChart"></div></div><div class="indicator"><div class="indicatorHead"><span>MACD 12/26/9</span><span id="macdLabel">—</span></div><div id="macdChart"></div></div></div></section>
-        <section class="advancedCard"><div class="section"><div class="sectionTitle"><h2>Risico & positie</h2><span class="badge">optioneel</span></div><div class="riskForm"><div><label for="accountSize">Account (€)</label><input id="accountSize" inputmode="decimal" type="number" min="1" step="100" value="2500"></div><div><label for="riskPct">Risico per trade (%)</label><input id="riskPct" inputmode="decimal" type="number" min=".1" max="10" step=".1" value="1"></div></div><div class="riskOut"><span style="color:var(--muted)">Max. risico</span><br><b id="riskEuro">€ 25,00</b><div id="positionSize" style="color:var(--muted);margin-top:4px">Positieomvang verschijnt zodra een setup geldig is.</div></div><div class="paperActions"><button class="paperBtn primary" id="paperTradeBtn" type="button">＋ Paper trade</button><button class="paperBtn" id="clearJournalBtn" type="button">Wis journal</button></div></div></section>
-        <section class="advancedCard"><div class="section"><div class="sectionTitle"><h2>Paper journal</h2><span class="badge" id="journalStats">0 trades</span></div><div class="journalList" id="journalList"><div class="proNote">Nog geen gesimuleerde trades.</div></div></div></section>
-      </div></div>
-    </details>
+<section class="v5-section v5-card chartPanelV5">
+  <div class="chartToolbar"><div><h2>Chart & uitvoering</h2><div class="hint">Het timeframe verandert alleen de grafiek. Het hoofdadvies blijft hetzelfde.</div></div><div class="chartTools"><span class="mutedTiny">Bekijk</span><div class="tfs compactTfs" id="timeframes"><button class="tf" data-tf="5m">5m</button><button class="tf" data-tf="15m">15m</button><button class="tf active" data-tf="1h">1u</button><button class="tf" data-tf="4h">4u</button><button class="tf" data-tf="1d">1D</button></div></div></div>
+  <div class="chartWrap"><div id="priceChart"><div class="chartLegend"><span class="ema20">EMA 20</span><span class="ema50">EMA 50</span><span class="ema200">EMA 200</span><span class="bb">Bollinger</span></div><div class="loadingOverlay" id="loading"><div class="loader"></div></div></div></div>
+</section>
 
-    <details class="scannerDetails"><summary><span>Kansen zoeken <span class="summarySub">Scan meerdere liquide EUR-markten en open alleen de interessantste setups</span></span></summary><section class="scannerPanel panel"><div class="scannerHead"><div><h2>Opportunity Scanner</h2><div class="scannerSub">Ieder pair krijgt één gecombineerd advies uit 15m + 1u + 4u + 1D.</div></div><button class="scanBtn" id="scanBtn" type="button">⚡ Scan kansen</button></div><div class="scannerGrid" id="scannerGrid"><div class="scanCard"><div class="scanMeta">Druk op “Scan kansen” om de beste setups naast elkaar te zetten.</div></div></div></section></details>
-  </main>
+<section class="v5-section v5-card">
+  <div class="radarTop"><div><h2>Opportunity Radar</h2><div class="mutedTiny">Rangschikt markten op gecombineerd signaal, confidence en entrykwaliteit.</div></div><button class="v5-btn" id="scanBtn" type="button">⚡ Scan kansen</button></div>
+  <div class="radarGridV5" id="scannerGrid"><div class="radarItem"><div class="radarPair">Nog niet gescand</div><div class="radarMeta">Gebruik “Scan kansen” wanneer je wilt weten welke markt technisch het interessantst is.</div></div></div>
+</section>
 
-  <div class="footer"><span>Databron: Bitvavo publieke marktdata. Charts: <a href="https://www.tradingview.com/" target="_blank" rel="noopener" style="color:#89a5bd">TradingView Lightweight Charts™</a>.</span><span>Technische scenario’s zijn probabilistisch. Gebruik altijd een stop, houd risico klein en controleer belangrijk nieuws vóór een trade.</span></div>
+<details class="detailsV5">
+<summary><span>Diepe analyse <span class="summarySub">Timeframes, indicatoren, patronen, scenario's, risico en paper journal</span></span></summary>
+<div class="detailsBody"><div class="detailsGrid">
+  <section class="detailCard"><div class="cardHead"><h2>Waarom?</h2><span class="badge" id="mtfSummary">—</span></div><div class="conclusion" id="conclusion">Data wordt geladen…</div><div class="guidanceStrip" style="margin:10px -12px -12px"><div class="guideItem"><div class="k">Trigger</div><div class="v" id="copilotTrigger">—</div></div><div class="guideItem"><div class="k">Ongeldig</div><div class="v" id="copilotInvalid">—</div></div><div class="guideItem"><div class="k">Risico</div><div class="v" id="copilotRisk">—</div></div></div></section>
+  <section class="detailCard"><div class="cardHead"><h2>Multi-timeframe</h2><span class="badge" id="checkScore">—</span></div><div class="mtf"><div class="mtfCard"><div class="tfname">15m · timing</div><div class="dir" id="mtf15">—</div></div><div class="mtfCard"><div class="tfname">1u · setup</div><div class="dir" id="mtf1h">—</div></div><div class="mtfCard"><div class="tfname">4u · trend</div><div class="dir" id="mtf4h">—</div></div><div class="mtfCard"><div class="tfname">1D · context</div><div class="dir" id="mtf1d">—</div></div></div><div class="scoreRow"><span class="name">Trend</span><span class="bar"><i id="trendBar"></i></span><span class="num" id="trendScore">—</span></div><div class="scoreRow"><span class="name">Momentum</span><span class="bar"><i id="momBar"></i></span><span class="num" id="momScore">—</span></div><div class="scoreRow"><span class="name">Structuur</span><span class="bar"><i id="structBar"></i></span><span class="num" id="structScore">—</span></div><div class="scoreRow"><span class="name">Confluence</span><span class="bar"><i id="confBar"></i></span><span class="num" id="confScore">—</span></div><div class="checklist" id="checklist" style="margin-top:8px"></div></section>
+  <section class="detailCard"><div class="cardHead"><h2>Patronen</h2><span class="badge" id="patternCount">0</span></div><div class="patternGrid" id="patternGrid"></div></section>
+  <section class="detailCard"><div class="cardHead"><h2>Bull / Base / Bear</h2><span class="badge">Scenario's</span></div><div class="scenarioGrid" id="scenarioGrid"></div></section>
+  <section class="detailCard proOnly"><div class="cardHead"><h2>1u kernmetrics</h2><span class="badge" id="regimeStat">—</span></div><div class="compactStats"><div class="stat"><div class="k">24u</div><div class="v" id="change24">—</div></div><div class="stat"><div class="k">RSI 14</div><div class="v" id="rsiStat">—</div></div><div class="stat"><div class="k">ATR</div><div class="v" id="atrStat">—</div></div></div></section>
+  <section class="detailCard proOnly"><div class="indicatorGrid"><div class="indicator"><div class="indicatorHead"><span>RSI 14</span><span id="rsiLabel">—</span></div><div id="rsiChart"></div></div><div class="indicator"><div class="indicatorHead"><span>MACD</span><span id="macdLabel">—</span></div><div id="macdChart"></div></div></div></section>
+  <section class="detailCard"><div class="cardHead"><h2>Risk Guardian</h2><span class="badge">1% standaard</span></div><div class="riskForm"><div><label for="accountSize">Account (€)</label><input id="accountSize" type="number" min="1" step="100" value="2500"></div><div><label for="riskPct">Risico (%)</label><input id="riskPct" type="number" min=".1" max="10" step=".1" value="1"></div></div><div class="riskOut"><span style="color:var(--muted)">Max. trade-risico</span><br><b id="riskEuro">€ 25,00</b><div id="positionSize" style="color:var(--muted);margin-top:4px">—</div></div><div class="paperActions"><button class="paperBtn primary" id="paperTradeBtn" type="button">＋ Paper trade</button><button class="paperBtn" id="clearJournalBtn" type="button">Wis journal</button></div></section>
+  <section class="detailCard"><div class="cardHead"><h2>Paper journal</h2><span class="badge" id="journalStats">0 trades</span></div><div class="journalList" id="journalList"><div class="proNote">Nog geen gesimuleerde trades.</div></div></section>
+</div></div>
+</details>
+
+<div id="learnBox" style="display:none"></div>
+<div class="footer"><span>Bitvavo live marktdata · optionele publieke marktcontext · historische edge lokaal berekend.</span><span>Geen winstgarantie. “Niet handelen” is een volwaardig advies.</span></div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -335,7 +362,7 @@
 (() => {
   "use strict";
   const $ = s => document.querySelector(s);
-  const state = {market:"BTC-EUR", tf:"1h", candles:[], analysis:null, mtf:{}, ws:null, timer:null, renderTimer:null, mtfTimer:null, priceLines:[], markerApi:null, loadSeq:0, mode:(localStorage.getItem("csl-mode")||"beginner"), patterns:[], plan:null};
+  const state = {market:"BTC-EUR", tf:"1h", candles:[], analysis:null, mtf:{}, ws:null, timer:null, renderTimer:null, mtfTimer:null, priceLines:[], markerApi:null, loadSeq:0, mode:(localStorage.getItem("csl-mode")||"beginner"), patterns:[], plan:null, marketContext:{}, evidence:null, radar:[]};
   const COLORS = {bg:"#08131f", grid:"rgba(126,166,200,.08)", text:"#819bb1", up:"#4be3a0", down:"#ff6b79", cyan:"#42dcff", purple:"#bb8cff", amber:"#ffca6a", bb:"rgba(125,157,182,.55)", blue:"#5f83ff"};
   const TF_LABEL = {"5m":"5 min","15m":"15 min","1h":"1 uur","4h":"4 uur","1d":"1 dag"};
   const MTF = ["15m","1h","4h","1d"];
@@ -546,6 +573,39 @@
     }catch(e){}
   }
 
+
+  async function fetchJsonTimeout(url,ms=5000){
+    const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),ms);
+    try{const r=await fetch(url,{signal:ctl.signal,headers:{Accept:"application/json"}});if(!r.ok)throw new Error(`HTTP ${r.status}`);return await r.json()}finally{clearTimeout(t)}
+  }
+  async function refreshMarketContext(){
+    const ctx={fear:null,fearLabel:null,totalChange:null,btcDominance:null,funding:null,updated:Date.now()};
+    const jobs=await Promise.allSettled([
+      fetchJsonTimeout("https://api.coingecko.com/api/v3/global"),
+      fetchJsonTimeout("https://api.alternative.me/fng/?limit=1"),
+      fetchJsonTimeout("https://fapi.binance.com/fapi/v1/premiumIndex?symbol=BTCUSDT")
+    ]);
+    if(jobs[0].status==="fulfilled"){const d=jobs[0].value?.data;ctx.totalChange=Number(d?.market_cap_change_percentage_24h_usd);ctx.btcDominance=Number(d?.market_cap_percentage?.btc)}
+    if(jobs[1].status==="fulfilled"){const d=jobs[1].value?.data?.[0];ctx.fear=Number(d?.value);ctx.fearLabel=d?.value_classification||null}
+    if(jobs[2].status==="fulfilled")ctx.funding=Number(jobs[2].value?.lastFundingRate);
+    state.marketContext=ctx;renderMarketContext();return ctx;
+  }
+  function marketContextAdjustment(side){
+    const c=state.marketContext||{};let adj=0;const notes=[];
+    if(side==="WAIT")return {adjustment:0,notes};
+    if(Number.isFinite(c.totalChange)){const aligned=side==="LONG"?c.totalChange:-c.totalChange;if(aligned>1.5){adj+=4;notes.push("brede markt ondersteunt richting")}else if(aligned<-1.5){adj-=6;notes.push("brede markt beweegt tegen richting")}}
+    if(Number.isFinite(c.funding)){if(side==="LONG"&&c.funding>.00045){adj-=5;notes.push("BTC funding is druk aan long-zijde")}if(side==="SHORT"&&c.funding<-.00025){adj-=5;notes.push("BTC funding is druk aan short-zijde")}}
+    if(Number.isFinite(c.fear)){if(side==="LONG"&&c.fear>=85){adj-=4;notes.push("extreme greed verhoogt chase-risico")}if(side==="SHORT"&&c.fear<=15){adj-=4;notes.push("extreme fear verhoogt squeeze-risico")}}
+    return {adjustment:clamp(adj,-15,8),notes};
+  }
+  function renderMarketContext(){
+    const c=state.marketContext||{};
+    $("#pulseFear").textContent=Number.isFinite(c.fear)?`${c.fear}/100`:"—";$("#pulseFearSub").textContent=c.fearLabel||"Marktsentiment";
+    $("#pulseMarket").textContent=Number.isFinite(c.totalChange)?pct(c.totalChange):"—";$("#pulseMarket").className="v "+(Number.isFinite(c.totalChange)?(c.totalChange>=0?"pos":"neg"):"");
+    $("#pulseDom").textContent=Number.isFinite(c.btcDominance)?`${fmt(c.btcDominance,2)}%`:"—";$("#pulseFunding").textContent=Number.isFinite(c.funding)?`${fmt(c.funding*100,4)}%`:"—";
+    const base=combineFrames(state.mtf||{}),impact=marketContextAdjustment(base.side);$("#pulseImpact").textContent=(impact.adjustment>0?"+":"")+impact.adjustment;$("#pulseImpact").className="v "+(impact.adjustment>0?"pos":impact.adjustment<0?"neg":"");$("#pulseImpactSub").textContent=impact.notes[0]||"Op confidence";
+  }
+
   function direction(a){return a.bias>=28?"LONG":a.bias<=-28?"SHORT":"NEUTRAAL"}
 
   function combineFrames(frames){
@@ -590,7 +650,12 @@
     return {score,side,confidence,aligned,available,longCount,shortCount,neutralCount,conflict,coreConflict,macroConflict,detail,reason};
   }
 
-  function combinedMarketSignal(){return combineFrames(state.mtf)}
+  function combinedMarketSignal(){
+    const base=combineFrames(state.mtf),m=marketContextAdjustment(base.side),confidence=clamp(base.confidence+m.adjustment,0,99);
+    let side=base.side,reason=base.reason;
+    if(side!=="WAIT"&&confidence<63){side="WAIT";reason="Technisch is er richting, maar de totale kwaliteit is na marktcontext te laag."}
+    return {...base,baseSide:base.side,side,baseConfidence:base.confidence,confidence,marketAdjustment:m.adjustment,contextNotes:m.notes,reason};
+  }
   function calcMtfScore(){return combinedMarketSignal().score}
   function combinedScore(){return calcMtfScore()}
 
@@ -623,6 +688,49 @@
     const tp1=long?entry+risk:entry-risk, tp2=long?entry+2*risk:entry-2*risk, tp3=long?entry+3*risk:entry-3*risk;
     const setup=Math.round(clamp(50+Math.abs(cs)*.38+(a.ADX||20)*.35-(chasing?12:0),0,99));
     return {side,score:setup,entryLow,entryHigh,entry,stop,tp1,tp2,tp3,rr:2,chasing};
+  }
+
+
+  function historicalEvidence(a,side){
+    if(!a?.c||a.c.length<320||!["LONG","SHORT"].includes(side))return {available:false,samples:0};
+    const n=a.c.length,end=n-28,cur=n-1,curTrend=(a.e20[cur]>a.e50[cur]?1:-1)+(a.e50[cur]>a.e200[cur]?1:-1)+(a.c[cur].close>a.e20[cur]?1:-1),curMacd=(a.m.hist[cur]||0)>=0?1:-1,curRsi=a.r[cur]||50,curAdx=a.adxA[cur]||20,dir=side==="LONG"?1:-1;
+    let samples=0,wins=0,losses=0,timeouts=0,sumR=0;
+    for(let i=220;i<end;i+=2){
+      const e20=a.e20[i],e50=a.e50[i],e200=a.e200[i],r=a.r[i],atrV=a.a[i],adxV=a.adxA[i],mh=a.m.hist[i];if([e20,e50,e200,r,atrV,mh].some(v=>v==null||!Number.isFinite(v)))continue;
+      const tr=(e20>e50?1:-1)+(e50>e200?1:-1)+(a.c[i].close>e20?1:-1),macdSign=mh>=0?1:-1;
+      if(Math.sign(tr)!==Math.sign(curTrend)||Math.abs(tr-curTrend)>2||Math.abs(r-curRsi)>12||macdSign!==curMacd||(Number.isFinite(adxV)&&Number.isFinite(curAdx)&&Math.abs(adxV-curAdx)>12))continue;
+      if(dir===1&&tr<1)continue;if(dir===-1&&tr>-1)continue;
+      const entry=a.c[i].close,risk=atrV*1.25,target=risk*2,stop=dir===1?entry-risk:entry+risk,tp=dir===1?entry+target:entry-target;
+      let outcome=0,exitR=0;
+      for(let j=i+1;j<=Math.min(i+24,n-1);j++){const b=a.c[j],hs=dir===1?b.low<=stop:b.high>=stop,ht=dir===1?b.high>=tp:b.low<=tp;if(hs&&ht){outcome=-1;exitR=-1;break}if(hs){outcome=-1;exitR=-1;break}if(ht){outcome=1;exitR=2;break}}
+      if(outcome===0){const final=a.c[Math.min(i+24,n-1)].close;exitR=clamp(dir*(final-entry)/risk,-1,2);timeouts++}else if(outcome>0)wins++;else losses++;
+      sumR+=exitR;samples++;
+    }
+    if(samples<8)return {available:false,samples,wins,losses,timeouts};
+    const decisive=wins+losses;return {available:true,samples,wins,losses,timeouts,winrate:decisive?wins/decisive*100:null,expectancy:sumR/samples};
+  }
+  function renderHistoricalEvidence(ev){
+    state.evidence=ev;
+    if(!ev?.available){$("#evidenceStatus").textContent=ev?.samples?`Slechts ${ev.samples}`:"Te weinig data";$("#edgeWinrate").textContent="—";$("#edgeWinrate").className="edgeBig";$("#edgeSummary").textContent="Nog niet genoeg vergelijkbare historische situaties om een betrouwbaar percentage te tonen.";$("#edgeSamples").textContent=ev?.samples??"—";$("#edgeExpectancy").textContent="—";$("#edgeWins").textContent="—";$("#edgeLosses").textContent="—";return}
+    $("#evidenceStatus").textContent=ev.samples>=30?"Redelijke sample":"Kleine sample";$("#edgeWinrate").textContent=Number.isFinite(ev.winrate)?`${Math.round(ev.winrate)}%`:"—";$("#edgeWinrate").className="edgeBig "+(ev.winrate>=55?"pos":ev.winrate<45?"neg":"warn");$("#edgeSummary").textContent="Percentage waarbij +2R vóór −1R werd geraakt bij technisch vergelijkbare 1u-situaties.";$("#edgeSamples").textContent=ev.samples;$("#edgeExpectancy").textContent=`${ev.expectancy>=0?"+":""}${fmt(ev.expectancy,2)}R`;$("#edgeWins").textContent=ev.wins;$("#edgeLosses").textContent=ev.losses;
+  }
+  function evidenceForAgainst(a,signal,plan,patterns){
+    const good=[],bad=[],add=(arr,title,meta,weight)=>arr.push({title,meta,weight}),dir=signal.side,h4=state.mtf["4h"],d1=state.mtf["1d"];
+    if(dir==="LONG"){if(h4?.bias>25)add(good,"4u-hoofdtrend bullish",`Bias +${h4.bias}`,"hoog");else add(bad,"4u geeft weinig steun",`Bias ${h4?.bias??"—"}`,"hoog");if(d1?.bias>15)add(good,"1D-context ondersteunt",`Bias +${d1.bias}`,"hoog");else if(d1?.bias<-15)add(bad,"1D werkt tegen long",`Bias ${d1.bias}`,"hoog");if(a.momentum>57)add(good,"Momentum bevestigt",`1u momentum ${a.momentum}/100`,"middel");else add(bad,"Momentum is matig",`1u momentum ${a.momentum}/100`,"middel")}
+    else if(dir==="SHORT"){if(h4?.bias<-25)add(good,"4u-hoofdtrend bearish",`Bias ${h4.bias}`,"hoog");else add(bad,"4u geeft weinig steun",`Bias ${h4?.bias??"—"}`,"hoog");if(d1?.bias<-15)add(good,"1D-context ondersteunt",`Bias ${d1.bias}`,"hoog");else if(d1?.bias>15)add(bad,"1D werkt tegen short",`Bias +${d1.bias}`,"hoog");if(a.momentum<43)add(good,"Momentum bevestigt",`1u momentum ${a.momentum}/100`,"middel");else add(bad,"Momentum is matig",`1u momentum ${a.momentum}/100`,"middel")}
+    else add(bad,"Geen voldoende gezamenlijke richting",signal.reason,"hoog");
+    if(signal.aligned>=3)add(good,"Sterke timeframe-consensus",`${signal.aligned}/${signal.available} timeframes`,"hoog");else if(signal.available&&signal.aligned<=1)add(bad,"Timeframes verdeeld",`${signal.aligned}/${signal.available} duidelijk uitgelijnd`,"hoog");
+    if(signal.conflict)add(bad,"Kern-timeframes conflicteren","1u/4u of 4u/1D staan tegenover elkaar","hoog");
+    if(plan?.chasing)add(bad,"Entry is uitgerekt","Koers ligt te ver van EMA20 voor nette R:R","hoog");
+    if(plan?.side!=="WAIT"&&plan?.rr>=2)add(good,"Risk/reward is bruikbaar",`TP2 = 1:${fmt(plan.rr,1)}`,"middel");
+    const alignedPattern=patterns?.find(p=>p.bias===(dir==="LONG"?"bull":"bear"));if(alignedPattern)add(good,alignedPattern.name,alignedPattern.why,"laag");
+    const mc=marketContextAdjustment(dir);if(mc.adjustment>0)add(good,"Brede marktcontext helpt",mc.notes.join(" · ")||`+${mc.adjustment} confidence`,"middel");if(mc.adjustment<0)add(bad,"Brede marktcontext remt",mc.notes.join(" · ")||`${mc.adjustment} confidence`,"middel");
+    if(a.atrPct>5)add(bad,"Volatiliteit is hoog",`ATR ${fmt(a.atrPct,2)}%`,"middel");if(a.volumeRatio<.7)add(bad,"Volume is zwak",`Volume ${fmt(a.volumeRatio,2)}× gemiddelde`,"laag");
+    return {good:good.slice(0,6),bad:bad.slice(0,6)};
+  }
+  function renderEvidenceLists(ev){
+    const row=(x,tone)=>`<div class="evRow ${tone}"><div class="evIcon">${tone==="good"?"✓":"!"}</div><div><div class="evTitle">${x.title}</div><div class="evMeta">${x.meta}</div></div><div class="evWeight">${x.weight}</div></div>`;
+    $("#evidenceFor").innerHTML=ev.good.length?ev.good.map(x=>row(x,"good")).join(""):`<div class="contextUnavailable">Nog geen sterk bewijs vóór een trade.</div>`;$("#evidenceAgainst").innerHTML=ev.bad.length?ev.bad.map(x=>row(x,"bad")).join(""):`<div class="contextUnavailable">Geen extra technische bezwaren gevonden.</div>`;$("#forCount").textContent=ev.good.length;$("#againstCount").textContent=ev.bad.length;
   }
 
   function clearPriceLines(){
@@ -739,7 +847,7 @@
     $("#copilotTrigger").textContent=trigger;
     $("#copilotInvalid").textContent=invalid;
     $("#copilotRisk").textContent=risk;
-    $("#copilotConfidence").textContent=`Confidence · ${signal.confidence}/100`;
+    $("#copilotConfidence").textContent=`${signal.confidence}/100`;
     $("#copilotRegime").textContent=`Consensus · ${signal.aligned}/${signal.available||4}`;
   }
   function getJournal(){try{return JSON.parse(localStorage.getItem("csl-journal")||"[]")}catch(e){return []}}
@@ -773,7 +881,7 @@
   async function scanOpportunities(){
     const btn=$("#scanBtn");
     btn.disabled=true;btn.textContent="Scannen…";
-    $("#scannerGrid").innerHTML=`<div class="scanCard"><div class="scanMeta">Per markt worden 15m, 1u, 4u en 1D gecombineerd. Even rekenen…</div></div>`;
+    $("#scannerGrid").innerHTML=`<div class="radarItem"><div class="radarPair">Scannen…</div><div class="radarMeta">15m + 1u + 4u + 1D worden per markt gecombineerd.</div></div>`;
     try{
       const preferred=["BTC-EUR","ETH-EUR","SOL-EUR","XRP-EUR","ADA-EUR","LINK-EUR","DOGE-EUR","HBAR-EUR","AVAX-EUR","SUI-EUR","NEAR-EUR","DOT-EUR"]
         .filter(x=>Array.from($("#marketSelect").options).some(o=>o.value===x));
@@ -794,16 +902,10 @@
         const aw=a.side==="WAIT"?0:1,bw=b.side==="WAIT"?0:1;
         return bw-aw||b.quality-a.quality;
       });
-      $("#scannerGrid").innerHTML=rows.map(r=>{
-        const label=r.side==="WAIT"?"GEEN TRADE":r.side;
-        const tone=r.side==="LONG"?"bull":r.side==="SHORT"?"bear":"neutral";
-        const scoreClass=r.side==="LONG"?"pos":r.side==="SHORT"?"neg":"warn";
-        return `<button class="scanCard" type="button" data-market="${r.market}">
-          <div class="scanTop"><span class="scanMarket">${r.market}</span><span class="patternTag ${tone}">${label}</span></div>
-          <div class="scanScore ${scoreClass}">${r.quality}/100</div>
-          <div class="scanMeta">Consensus ${r.signal.aligned}/${r.signal.available} · 4u ${r.regime} · ${r.pattern}</div>
-        </button>`;
-      }).join("")||`<div class="scanCard"><div class="scanMeta">Geen markten konden worden gescand.</div></div>`;
+      $("#scannerGrid").innerHTML=rows.slice(0,10).map((r,idx)=>{
+        const label=r.side==="WAIT"?"GEEN TRADE":r.side,scoreClass=r.side==="LONG"?"pos":r.side==="SHORT"?"neg":"warn";
+        return `<button class="radarItem" type="button" data-market="${r.market}"><div class="radarRank">#${idx+1} · ${r.quality}/100</div><div class="radarPair">${r.market}</div><div class="radarDecision ${scoreClass}">${label}</div><div class="radarMeta">Consensus ${r.signal.aligned}/${r.signal.available}<br>4u ${r.regime} · ${r.pattern}</div></button>`;
+      }).join("")||`<div class="radarItem"><div class="radarPair">Geen resultaten</div><div class="radarMeta">Markten konden niet worden gescand.</div></div>`;
     }catch(e){
       console.error(e);toast("Scanner kon niet alle markten laden.");
     }finally{btn.disabled=false;btn.textContent="⚡ Scan kansen"}
@@ -841,6 +943,7 @@
     // Prijs/24u komt van de geopende chart; technische hoofdmetrics komen bewust van 1u.
     const c=a.c, now=c.at(-1), back24=Math.max(0,c.length-1-Math.round(24*60/(state.tf==="5m"?5:state.tf==="15m"?15:state.tf==="1h"?60:state.tf==="4h"?240:1440)));
     const change=(now.close/c[back24].close-1)*100;
+    $("#heroPair").textContent=state.market;
     $("#lastPrice").textContent=money(a.close);
     $("#change24").textContent=pct(change);$("#change24").className="v "+(change>=0?"pos":"neg");
     $("#rsiStat").textContent=fmt(anchor.R,1);$("#rsiStat").className="v "+(anchor.R>70||anchor.R<30?"warn":"");
@@ -878,6 +981,10 @@
     renderScenarios(anchor,plan);
     const checks=tradeChecklist(anchor,plan,signal);
     copilotRender(anchor,plan,patterns,checks,signal);
+    $("#confidenceFill").style.width=`${signal.confidence}%`;
+    renderHistoricalEvidence(historicalEvidence(anchor,plan.side));
+    renderEvidenceLists(evidenceForAgainst(anchor,signal,plan,patterns));
+    renderMarketContext();
 
     // Op andere chart-timeframes tonen we wel de gezamenlijke entry/SL/TP-lijnen,
     // maar geen 1u-pattern markers op een niet-1u tijdas.
@@ -896,7 +1003,7 @@
   }
 
   async function refreshMtf(){
-    const results=await Promise.all(MTF.map(async tf=>{try{return [tf,analyze(await fetchCandles(state.market,tf,500))]}catch(e){return [tf,null]}}));
+    const results=await Promise.all(MTF.map(async tf=>{try{return [tf,analyze(await fetchCandles(state.market,tf,tf==="1h"?1200:600))]}catch(e){return [tf,null]}}));
     state.mtf=Object.fromEntries(results);
   }
 
@@ -934,7 +1041,7 @@
     const requestedMarket=state.market, requestedTf=state.tf;
     if(show)$("#loading").classList.add("show");
     try{
-      await refreshMtf();
+      await Promise.all([refreshMtf(),refreshMarketContext().catch(()=>state.marketContext||{})]);
       const candles=await fetchCandles(requestedMarket,requestedTf,600);
       // Negeer een trage response van een markt/timeframe dat intussen alweer verlaten is.
       if(seq!==state.loadSeq || requestedMarket!==state.market || requestedTf!==state.tf) return;
@@ -975,6 +1082,7 @@
 
   setMode(state.mode);renderJournal();loadMarkets(); load(true);
   state.mtfTimer=setInterval(async()=>{try{await refreshMtf();if(state.candles.length)render(analyze(state.candles));}catch(e){}},120000);
+  setInterval(()=>refreshMarketContext().then(()=>{if(state.candles.length)render(analyze(state.candles))}).catch(()=>{}),300000);
 })();
 </script>
 </body>

@@ -1,27 +1,15 @@
-# Crypto Signal Lab · Unified Trading Copilot v4
+# Crypto Signal Lab — Trading Intelligence v5
 
-## Belangrijkste wijziging
-De app geeft nu **één gecombineerd advies per tradingpair**.
+V5 is een decision-first crypto trading copilot.
 
-Het hoofdadvies verandert niet meer omdat je een andere grafiekweergave opent.
+- Eén oordeel per tradingpair: LONG / SHORT / NIET HANDELEN / WACHT OP PULLBACK
+- 15m timing + 1u setup + 4u hoofdtrend + 1D context
+- Optionele brede marktcontext: Fear & Greed, totale markt, BTC dominance en BTC funding
+- Evidence For / Evidence Against tegen confirmation bias
+- Historical Evidence Engine: vergelijkbare 1u-setups, +2R versus -1R, sample size, winrate en expectancy
+- Opportunity Radar
+- Chart-timeframe verandert alleen de weergave, niet het hoofdadvies
+- Risk Guardian, paper trading, patroonherkenning en scenario's blijven aanwezig
+- Externe context mag uitvallen zonder de technische engine te blokkeren
 
-### Weging
-- 15m: timing (10%)
-- 1u: setup en entry (30%)
-- 4u: hoofdtrend (40%)
-- 1D: bredere context (20%)
-
-Een LONG of SHORT wordt alleen afgegeven wanneer de gezamenlijke score sterk genoeg is en de belangrijke timeframes niet hard tegen elkaar ingaan. Anders staat er **NIET HANDELEN**.
-
-## Interface
-- Tradingpair kiezen bovenaan
-- Eén groot gecombineerd advies: LONG / SHORT / NIET HANDELEN
-- Eén confidence-score
-- Eén entryzone, stop loss en TP-plan
-- Trigger, invalidatie en belangrijkste risico
-- Chart-timeframe is verplaatst naar de grafiek en is alleen een weergavekeuze
-- Verdiepende timeframe-data blijft beschikbaar, maar zit uit de hoofdflow
-- Opportunity Scanner gebruikt nu dezelfde 4-timeframe combinatie per coin
-
-## Data
-Publieke Bitvavo REST + WebSocket marktdata.
+Historische resultaten zijn indicatief en geen garantie voor toekomstige resultaten.
